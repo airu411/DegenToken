@@ -17,36 +17,46 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
 contract DegenToken is ERC20, Ownable, ERC20Burnable {
-    uint256 initSupply = 100 * 10**uint256(decimals());
     mapping(string => uint256) redeemableItems;
+
+    struct RedeemableItem {
+      string itemName;
+      uint256 itemCost;
+    }
+
+    string[] private itemNames;
 
     event ItemRedeemed(address indexed to, string itemName);
 
-    constructor() ERC20("Degen", "DGN") Ownable() {
-      _mint(msg.sender, initSupply);
-
-      redeemableItems["Item1"] = 10;
-      redeemableItems["Item2"] = 20;
-      redeemableItems["Item3"] = 30;
-      redeemableItems["Item4"] = 10;
-      redeemableItems["Item5"] = 20;
-    }
+    constructor() ERC20("Degen", "DGN") Ownable() { }
 
     function mint(address _to, uint256 _amount) public onlyOwner {
         _mint(_to, _amount);
     }
 
     function transfer(address _to, uint256 _amount) public override returns (bool) {
-        require(balanceOf(msg.sender) >= _amount, "You don't have enough tokens to transfer.");
+        require(balanceOf(msg.sender) >= _amount, "You don't have enough DGN tokens to transfer.");
         return super.transfer(_to, _amount);
     }
 
     function addRedeemableItem(string memory _itemName, uint256 _itemCost) public onlyOwner {
+        itemNames.push(_itemName);
         redeemableItems[_itemName] = _itemCost;
     }
 
+    function checkRedeemableItems() public view returns (RedeemableItem[] memory) {
+        RedeemableItem[] memory items = new RedeemableItem[](itemNames.length);
+        for (uint256 i = 0; i < itemNames.length; i++) {
+            items[i] = RedeemableItem({
+                itemName: itemNames[i],
+                itemCost: redeemableItems[itemNames[i]]
+            });
+        }
+        return items;
+    }
+
     function redeemItem(string memory _itemName) public {
-        require(balanceOf(msg.sender) >= redeemableItems[_itemName], "You don't have enough tokens for this item.");
+        require(balanceOf(msg.sender) >= redeemableItems[_itemName], "You don't have enough DGN tokens for this item.");
         transfer(owner(), redeemableItems[_itemName]);
         emit ItemRedeemed(msg.sender, _itemName);
     }
@@ -56,7 +66,7 @@ contract DegenToken is ERC20, Ownable, ERC20Burnable {
     }
 
     function burn(uint256 _amount) public override {
-        require(balanceOf(msg.sender) >= _amount, "You don't have enough tokens to burn.");
+        require(balanceOf(msg.sender) >= _amount, "You don't have enough DGN tokens to burn.");
         _burn(msg.sender, _amount);
     }
 }
