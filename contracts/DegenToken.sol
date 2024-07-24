@@ -18,17 +18,17 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
 contract DegenToken is ERC20, Ownable, ERC20Burnable {
     mapping(string => uint256) redeemableItems;
+    string[] private itemNames;
 
     struct RedeemableItem {
-      string itemName;
-      uint256 itemCost;
+        string itemName;
+        uint256 itemCost;
     }
-
-    string[] private itemNames;
 
     event ItemRedeemed(address indexed to, string itemName);
 
     constructor() ERC20("Degen", "DGN") Ownable() {
+        mint(msg.sender, 1000);
         addRedeemableItem("Degen Item1", 1);
         addRedeemableItem("Degen Item2", 2);
     }
