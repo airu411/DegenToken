@@ -28,7 +28,10 @@ contract DegenToken is ERC20, Ownable, ERC20Burnable {
 
     event ItemRedeemed(address indexed to, string itemName);
 
-    constructor() ERC20("Degen", "DGN") Ownable() { }
+    constructor() ERC20("Degen", "DGN") Ownable() {
+        addRedeemableItem("Degen Item1", 1);
+        addRedeemableItem("Degen Item2", 2);
+    }
 
     function mint(address _to, uint256 _amount) public onlyOwner {
         _mint(_to, _amount);
