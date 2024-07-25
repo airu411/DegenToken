@@ -31,7 +31,7 @@ command to run if program contains helper info
 ## Authors
 
 - airu411
-- Starter Project code from [@Metacrafters](https://github.com/Metacrafters/DegenToken)
+- [Starter Project code](https://github.com/Metacrafters/DegenToken) from [@Metacrafters](https://x.com/metacraftersio)
 
 
 ## License
