@@ -1,6 +1,6 @@
 # Project Title
 
-Simple overview of use/purpose.
+This is a smart contract for DGN tokens.
 
 ## Description
 
@@ -30,10 +30,8 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+- airu411
+- Starter Project code from [@Metacrafters](https://github.com/Metacrafters/DegenToken)
 
 
 ## License
