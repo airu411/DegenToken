@@ -43,14 +43,14 @@ You may change the network name to whatever you want.
   5.6. `checkBalance` - This can be used by any user. Using it would allow them to check how much DGN tokens they have.  
   5.7. `checkRedeemableItems` - This can be used by any user. Using it would allow them to check what are the redeemable items that are available and were added by the owner.  
 
-![Figure 1](public\fig1.png)  
-![Figure 2](public\fig2.png)  
+![Figure 1](public/fig1.png)  
+![Figure 2](public/fig2.png)  
 
 ## Help
 
 You may verify your transactions on the contract deployed on Snowtrace testnet. Mine can be found [here](https://testnet.snowtrace.io/address/0x22D7F78a3f12Ae00564953fCF0C228E76134cAf6). It should look similar to:  
 
-![Figure 3](public\fig3.png)  
+![Figure 3](public/fig3.png)  
 
 If you run into problems, you may look at the following:  
 
